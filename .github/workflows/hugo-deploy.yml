@@ -1,0 +1,46 @@
+name: Deploy Hugo Site to AWS via GitHub Actions
+
+on:
+  push:
+    branches:
+      - main # Adjust the branch as needed (e.g., 'main' or 'master')
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Check out the repository
+    - name: Check out repository code
+      uses: actions/checkout@v4
+
+    # Step 2: Install Hugo
+    - name: Install Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: 'latest'
+
+    # Step 3: Build the Hugo site
+    - name: Build Hugo site
+      run: hugo --minify
+
+    # Step 4: Deploy to AWS S3 (Replace with your bucket configuration)
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v3
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1 # Replace with your AWS region
+
+    - name: Sync site to S3 bucket
+      run: |
+        aws s3 sync ./public s3://your-s3-bucket-name --delete
+      env:
+        S3_BUCKET: your-s3-bucket-name # Replace with your S3 bucket name
+
+    # Optional: Invalidate CloudFront cache if you are using CloudFront
+    - name: Invalidate CloudFront cache
+      run: |
+        aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+      env:
+        CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
