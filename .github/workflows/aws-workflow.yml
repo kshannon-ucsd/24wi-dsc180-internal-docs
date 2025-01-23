@@ -20,20 +20,12 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: us-east-1 
+          aws-region: us-east-1
           role-to-assume: arn:aws:iam::354918411534:role/github.to.aws.oicd
           role-session-name: GitHubActionSession
 
-      # Debug OIDC Token
-      - name: Debug OIDC Token
-        run: |
-          echo "GitHub OIDC Token:"
-          echo $ACTIONS_ID_TOKEN_REQUEST_TOKEN
-
-      # Debug AWS Identity
-      - name: Debug AWS Identity
+      - name: Verify AWS Identity
         run: aws sts get-caller-identity
 
-      # Sync to S3 Bucket
       - name: Sync to S3 Bucket
-        run: aws s3 sync . s3://aws-actions-test --delete --exclude ".git/*" --exclude ".github/*"
+        run: aws s3 sync . s3://dsc180-internal-docs --delete --exclude ".git/*" --exclude ".github/*"
