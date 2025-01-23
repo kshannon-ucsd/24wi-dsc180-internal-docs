@@ -1,0 +1,31 @@
+name: AWS Actions Test
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: us-east-1
+          role-to-assume: arn:aws:iam::354918411534:role/github.to.aws.oicd
+          role-session-name: GitHubActionSession
+
+      - name: Verify AWS Identity
+        run: aws sts get-caller-identity
+
+      - name: Sync to S3 Bucket
+        run: aws s3 sync . s3://aws-actions-test --delete --exclude ".git/*" --exclude ".github/*"
