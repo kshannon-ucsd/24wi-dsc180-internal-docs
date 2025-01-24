@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DevOps Team Documentation on Capstone Project Documentation</title>
+    <link>//localhost:1313/backend-team/</link>
+    <description>Recent content in DevOps Team Documentation on Capstone Project Documentation</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 21 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/backend-team/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>help Team Documentation</title>
+      <link>//localhost:1313/backend-team/help/</link>
+      <pubDate>Tue, 21 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/backend-team/help/</guid>
+      <description>&lt;h1 id=&#34;help-team-documentation&#34;&gt;help Team Documentation&lt;/h1&gt;&#xA;&lt;p&gt;Welcome to the DevOps team&amp;rsquo;s documentation section. Here you&amp;rsquo;ll find all documentation related to our infrastructure and deployment processes.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
