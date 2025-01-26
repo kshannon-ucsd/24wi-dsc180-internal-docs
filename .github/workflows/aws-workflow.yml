@@ -23,22 +23,9 @@ jobs:
           aws-region: us-east-1
           role-to-assume: arn:aws:iam::354918411534:role/github.to.aws.oicd
           role-session-name: GitHubActionSession
-
-      - name: Verify AWS Identity
-        run: aws sts get-caller-identity --debug
-
-      - name: Debug OIDC Token Securely
-        run: |
-          if [ -z "$ACTIONS_ID_TOKEN_REQUEST_TOKEN" ]; then
-            echo "OIDC Token is missing"
-            exit 1
-          else
-            echo "OIDC Token is present (verified securely)"
-          fi
-
-      - name: Debug Environment (Filtered)
-        run: |
-          env | grep -v 'TOKEN' | grep -v 'SECRET'
-
-      - name: Debug AWS S3 Command
-        run: aws s3 ls s3://dsc180-internal-docs --debug
+      
+      - name: Upload to S3
+        run: aws s3 sync public/ s3://your-bucket-name/ --delete
+      
+      - name: Invalidate CloudFront
+        run: aws cloudfront create-invalidation --distribution-id E3BEDODGYE0VSN --paths "/*"
