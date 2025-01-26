@@ -25,7 +25,20 @@ jobs:
           role-session-name: GitHubActionSession
 
       - name: Verify AWS Identity
-        run: aws sts get-caller-identity
+        run: aws sts get-caller-identity --debug
 
-      - name: Sync to S3 Bucket
-        run: aws s3 sync . s3://dsc180-internal-docs --delete --exclude ".git/*" --exclude ".github/*"
+      - name: Debug OIDC Token Securely
+        run: |
+          if [ -z "$ACTIONS_ID_TOKEN_REQUEST_TOKEN" ]; then
+            echo "OIDC Token is missing"
+            exit 1
+          else
+            echo "OIDC Token is present (verified securely)"
+          fi
+
+      - name: Debug Environment (Filtered)
+        run: |
+          env | grep -v 'TOKEN' | grep -v 'SECRET'
+
+      - name: Debug AWS S3 Command
+        run: aws s3 ls s3://dsc180-internal-docs --debug
