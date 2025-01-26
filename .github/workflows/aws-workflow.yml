@@ -29,3 +29,9 @@ jobs:
 
       - name: Sync to S3 Bucket
         run: aws s3 sync . s3://dsc180-internal-docs --delete --exclude ".git/*" --exclude ".github/*"
+        
+      - name: Debug OIDC Token
+        run: echo "OIDC Token: $ACTIONS_ID_TOKEN_REQUEST_TOKEN"
+
+      - name: Debug Environment
+        run: env
