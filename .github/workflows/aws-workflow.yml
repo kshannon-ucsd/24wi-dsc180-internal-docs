@@ -16,13 +16,16 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-
+    
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
           aws-region: us-east-1
           role-to-assume: arn:aws:iam::354918411534:role/github.to.aws.oicd
           role-session-name: GitHubActionSession
+     
+      - name: Hugo Packaging
+        run: hugo --minify
       
       - name: Upload to S3
         run: aws s3 sync public/ s3://dsc180-internal-docs/ --delete
