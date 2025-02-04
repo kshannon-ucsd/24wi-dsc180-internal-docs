@@ -1,3 +1,8 @@
+---
+title: "Cloud Arichtechture Team Documentation"
+date: 2025-01-30
+---
+
 # Steps for Setting Up the Web Team Infrastructure
 
 ## 1. Set Up OIDC
