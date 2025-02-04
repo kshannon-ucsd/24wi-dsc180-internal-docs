@@ -24,9 +24,15 @@ jobs:
           role-to-assume: arn:aws:iam::354918411534:role/github.to.aws.oicd
           role-session-name: GitHubActionSession
      
-      - name: Hugo Packaging
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true    # Enable if you're using SCSS/SASS
+          
+      - name: Build
         run: hugo --minify
-      
+        
       - name: Upload to S3
         run: aws s3 sync public/ s3://dsc180-internal-docs/ --delete
       
