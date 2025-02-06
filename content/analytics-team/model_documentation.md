@@ -4,8 +4,6 @@ date: 2025-02-05
 ---
 
 # X-Ray Classification Model Documentation
-Date: 2024-01-21
-
 ## Overview
 This document provides technical details about our CNN-based X-ray image classification model implementation. The model is designed to process medical X-ray images and provide binary classification results while incorporating positional data.
 
