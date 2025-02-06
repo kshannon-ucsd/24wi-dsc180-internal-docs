@@ -1,3 +1,8 @@
+---
+title: "Analytics Team Documentation"
+date: 2025-02-05
+---
+
 # X-Ray Classification Model Documentation
 Date: 2024-01-21
 
