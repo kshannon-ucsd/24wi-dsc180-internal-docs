@@ -23,7 +23,7 @@ The document guides you through how to run the SQL and Python script to obtain t
 ---
 
 ## Key Files
-1. `data_subset.sql` - Performs the queries to create the subset and saves output to `data/interim` folder
+1. `sepsis_data.sql` - Performs the queries to create the subset and saves output to `data/sql-data` folder
 2. `subset_preproc.py` - Performs the queries to create the subset and saves output to `data/processed` folder
 
 ---
@@ -33,6 +33,6 @@ The document guides you through how to run the SQL and Python script to obtain t
 1. Navigate to `scripts` folder in `24-wi-dsc180-project` repo through terminal
 2. Connect to postgreSQL through postgres user `psql -U postgres`
 3. Connect to mimic database through `\c mimiciv`
-4. Run `\i data_subset.sql`
+4. Run `\i sepsis_data.sql`
 5. Disconnect from postgreSQL through `\q`
 2. Run `py subset_preproc.py` in terminal 
