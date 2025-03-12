@@ -30,7 +30,7 @@ The document guides you through how to run the SQL and Python script to obtain t
 
 ## Running the Scripts
 
-1. Navigate to `scripts` folder in `24-wi-dsc180-project` repo through terminal
+1. Navigate to `src/etl/sql` folder in `24-wi-dsc180-project` repo through terminal
 2. Connect to postgreSQL through postgres user `psql -U postgres`
 3. Connect to mimic database through `\c mimiciv`
 4. Run `\i sepsis_data.sql`
