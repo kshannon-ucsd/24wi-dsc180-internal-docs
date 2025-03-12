@@ -71,14 +71,15 @@ This script processes metadata related to patient records by cleaning and aggreg
 
 ---
 
-##Why calculate the most recent features and mean features for each patient and admission?
+## Why calculate the most recent features and mean features for each patient and admission?
 One of the biggest obstacles we encountered when dealing with this data was null values. Specifically, the features/lab results collected are built using "chart
 event" data (data that occurs at several timestamps throughout a patient's admission). For example, a patient at a specific timestamp may have just heartrate
 and blood pressure data collected, nothing else. This naturally leads to a higher level of null values. For the sake of simplicity for our sepsis
 prediction model, we "squeezed" these lab results into one row of features for each patient admission. We take the most recent set of lab results for 
 any single admission, then fill any null values within that most recent timestamp with the mean values across admissions.
 
-##Why these features?
+## Why these features?
+When deciding upon features to use for the model, we aimed to find features that would best mirror real-life practices to detect sepsis. AFter consulting with UCSD Health faculty, we were able to identify the features above as the lab results and data most used to assess risk for sepsis in real time. We believe that when combined with pneumonia detection, these features can be a good predictor for sepsis. We collected all of these features from the mimiciv dataset.
 
 
 
